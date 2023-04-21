@@ -184,7 +184,7 @@ ColorByAlt = {
 //SiteCirclesLineDash = [5, 5]; // null - solid line, [5, 5] - dashed line with 5 pixel lines and spaces in between
 
 // Controls page title, righthand pane when nothing is selected
-//PageName = "tar1090";
+PageName = "ADS-B One";
 
 // Show country flags by ICAO addresses?
 //ShowFlags = true;
@@ -223,7 +223,7 @@ BingMapsAPIKey = null;
 // filterTISB = false;
 
 //flightawareLinks = false;
-//shareBaseUrl = 'https://globe.adsbexchange.com/';
+shareBaseUrl = 'https://globe.adsb.one/';
 // planespottersLinks = false;
 
 // show links to various registration websites (not all countries)

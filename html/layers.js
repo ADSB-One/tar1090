@@ -99,7 +99,7 @@ function createBaseLayers() {
         type: 'base',
     }));
 
-    if (!adsbexchange) {
+    if (!adsb_one) {
         world.push(new ol.layer.Tile({
             source: new ol.source.OSM({
                 "url" : "https://{a-d}.tile.openstreetmap.de/{z}/{x}/{y}.png",
@@ -113,7 +113,7 @@ function createBaseLayers() {
         }));
     }
 
-    if (false && adsbexchange) {
+    if (false && adsb_one) {
         jQuery('#premium_text').updateText('Premium active!');
         world.push(new ol.layer.Tile({
             source: new ol.source.XYZ({
@@ -152,7 +152,7 @@ function createBaseLayers() {
             type: 'base',
         }));
     }
-    if (0 && adsbexchange) {
+    if (0 && adsb_one) {
         world.push(new ol.layer.Tile({
             source: new ol.source.XYZ({
                 url: "https://api.maptiler.com/maps/256/{z}/{x}/{y}.png?key=HyIQ6A88uTDdX4n4MNVY",
@@ -167,7 +167,7 @@ function createBaseLayers() {
         }));
     }
 
-    if (!adsbexchange) {
+    if (!adsb_one) {
         world.push(new ol.layer.Tile({
             source: new ol.source.XYZ({
                 url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",

@@ -315,7 +315,7 @@ function processReceiverUpdate(data, init) {
         globeIndexNow[data.globeIndex] = data.now;
     }
 
-    if (!(uat || init || (globeIndex && adsbexchange))) {
+    if (!(uat || init || (globeIndex && adsb_one))) {
         updateMessageRate(data);
     }
 
@@ -1595,15 +1595,15 @@ jQuery('#selected_altitude_geom1')
 
     TAR.altitudeChart.init();
 
-    if (adsbexchange) {
-        jQuery('#adsbexchange_header').show();
+    if (adsb_one) {
+        jQuery('#adsb_one_header').show();
         jQuery('#credits').show();
         if (!onMobile) {
             jQuery('#creditsSelected').show();
         }
         jQuery('#selected_infoblock').addClass('adsbx-selected-bg');
         if (false && window.self != window.top) {
-            window.top.location.href = "https://www.adsbexchange.com/";
+            window.top.location.href = "https://www.adsb.one/";
             return;
         }
     }
@@ -1844,7 +1844,7 @@ function setIntervalTimers() {
         jQuery("#timers_paused").css('display','none');
     }
     console.log("set timers " + localTime(new Date()));
-    if ((adsbexchange || dynGlobeRate) && !uuid) {
+    if ((adsb_one || dynGlobeRate) && !uuid) {
         timers.globeRateUpdate = setInterval(globeRateUpdate, 180000);
     }
     pollPositionInterval();
@@ -2327,7 +2327,7 @@ function ol_map_init() {
 // Initalizes the map and starts up our timers to call various functions
 function initMap() {
 
-    if (globeIndex && adsbexchange) {
+    if (globeIndex && adsb_one) {
         jQuery('#dump1090_total_history_td').hide();
         jQuery('#dump1090_message_rate_td').hide();
     }
@@ -6063,7 +6063,7 @@ function refreshInt() {
     if (!mapIsVisible)
         refresh *= 2;
 
-    if (adsbexchange && window.self != window.top) {
+    if (adsb_one && window.self != window.top) {
         refresh *= 1.5;
     } else if (onMobile && TrackedAircraftPositions > 800) {
         refresh *= 1.5;
@@ -8358,7 +8358,7 @@ function requestBoxString() {
     return `${extent.minLat.toFixed(6)},${extent.maxLat.toFixed(6)},${minLon},${maxLon}`;
 }
 
-if (adsbexchange && window.location.hostname.startsWith('inaccurate')) {
+if (adsb_one && window.location.hostname.startsWith('inaccurate')) {
     jQuery('#inaccurate_warning').removeClass('hidden');
     document.getElementById('inaccurate_warning').innerHTML = `
 <br>
@@ -8378,12 +8378,12 @@ function getn(n) {
 }
 
 function globeRateUpdate() {
-    if (adsbexchange) {
+    if (adsb_one) {
         dynGlobeRate = true;
-        const cookieExp = getCookie('adsbx_sid').split('_')[0];
+        const cookieExp = getCookie('adsb_one_sid').split('_')[0];
         const ts = new Date().getTime();
         if (!cookieExp || cookieExp < ts + 3600*1000)
-            setCookie('adsbx_sid', ((ts + 2*86400*1000) + '_' + Math.random().toString(36).substring(2, 15)), 2);
+            setCookie('adsb_one_sid', ((ts + 2*86400*1000) + '_' + Math.random().toString(36).substring(2, 15)), 2);
     }
     if (dynGlobeRate) {
         return jQuery.ajax({url:'/globeRates.json', cache: false, dataType: 'json', }).done(function(data) {
