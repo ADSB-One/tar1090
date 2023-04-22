@@ -346,25 +346,6 @@ function createBaseLayers() {
 
         for (let type in chartbundleTypes) {
             us.push(new ol.layer.Tile({
-                source: new ol.source.OSM({
-                    url: 'https://map.adsbexchange.com/mapproxy/tiles/1.0.0/'+ type + '/osm_grid/{z}/{x}/{y}.png',
-                    projection: 'EPSG:3857',
-                    attributions: 'Tiles courtesy of <a href="http://www.chartbundle.com/">ChartBundle</a>',
-                    attributionsCollapsible: false,
-                    maxZoom: 11,
-                    transition: tileTransition,
-                }),
-                name: 'chartbundle_' + type,
-                title: chartbundleTypes[type],
-                type: 'base',
-                group: 'chartbundle'}));
-        }
-        chartbundleTypes = {
-            secgrids: "Sect. w/ SAR grid",
-        };
-
-        for (let type in chartbundleTypes) {
-            us.push(new ol.layer.Tile({
                 source: new ol.source.TileWMS({
                     url: 'https://wms.chartbundle.com/wms',
                     params: {LAYERS: type},
